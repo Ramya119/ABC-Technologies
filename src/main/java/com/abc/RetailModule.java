@@ -1,7 +1,7 @@
 package com.abc;
 
 public class RetailModule {
-	private int product_id;
+	private int product_id; // product
 	public int getProduct_id() {
 		return product_id;
 	}
