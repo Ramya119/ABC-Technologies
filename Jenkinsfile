@@ -24,7 +24,7 @@ pipeline
         stage('deploy-on-doccont')
         {
             steps{
-                build 'deploy-on-docker-container'
+                build 'deploy-on-doccont'
             }
         }
        
