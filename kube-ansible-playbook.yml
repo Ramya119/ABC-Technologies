@@ -1,0 +1,45 @@
+---
+- name: Build docker image & deploy on docker container
+  gather_facts: true
+  hosts: localhost
+  tasks:
+    - name: Build the image on local
+      docker_image:
+       name: ramyasree99/abc-technology
+       source: build
+       build:
+        path: .
+       tag: latest
+    - name: Log into DockerHub
+      docker_login:
+       username: ramyasree99
+       password: Saibaba$99
+       email: ramyasreekanijam911@gmail.com
+    - name: Tag and push to docker hub on local
+      docker_image:
+       name: ramyasree99/abc-technology:latest
+       repository: ramyasree99/abc-technology
+       push: yes
+       source: local
+    - name: Remove image
+      ignore_errors: yes
+      docker_image:
+       state: absent
+       name: ramyasree99/abc-technology
+       tag: latest
+    - name: Log into DockerHub
+      docker_login:
+       username: ramyasree99
+       password: Saibaba$99
+       email: ramyasreekanijam911@gmail.com
+    - name: Pull image from dockerhub repo
+      docker_image:
+       name: ramyasree99/abc-technology:latest
+       source: pull
+    - name: install Pod network
+      become: yes
+      become_user: jenkins
+      shell: kubectl apply -f https://github.com/Ramya119/ABC-Technologies/blob/master/kube-deployment.yml
+      args:
+        chdir: $HOME
+...
