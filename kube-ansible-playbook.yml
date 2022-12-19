@@ -39,7 +39,7 @@
     - name: install Pod network
       become: yes
       become_user: jenkins
-      shell: kubectl apply -f https://raw.githubusercontent.com/Ramya119/ABC-Technologies/master/kube-deployment.yml
+      shell: "kubectl apply -f https://raw.githubusercontent.com/Ramya119/ABC-Technologies/master/kube-deployment.yml"
       args:
         chdir: $HOME
 ...
