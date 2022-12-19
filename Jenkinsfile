@@ -21,6 +21,12 @@ pipeline
                 build 'package'
             }
          }
+        stage('deploy-on-doccont')
+        {
+            steps{
+                build 'deploy-on-docker-container'
+            }
+        }
        
     }
         
