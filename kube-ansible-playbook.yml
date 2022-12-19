@@ -36,23 +36,7 @@
       docker_image:
        name: ramyasree99/abc-technology:latest
        source: pull
-    - name: initialize the cluster
-      shell: kubeadm init --pod-network-cidr=10.244.0.0/16 
-
-    - name: create .kube directory
-      become: yes
-      become_user: ubuntu
-      file:
-        path: $HOME/.kube
-        state: directory
-        mode: 0755
-
-    - name: copy admin.conf to user's kube config
-      copy:
-        src: /etc/kubernetes/admin.conf
-        dest: /home/ubuntu/.kube/config
-        remote_src: yes
-        owner: jenkins
+   
         
     - name: install Pod network
       become: yes
