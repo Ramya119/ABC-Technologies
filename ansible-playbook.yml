@@ -39,7 +39,7 @@
       connection: local
       docker_image:
        name: ramyasree99/abc-technology:latest
-       repository: ramyasree/abc-technology
+       repository: ramyasree99/abc-technology
        push: yes
        source: local
     - name: Remove image
