@@ -8,29 +8,22 @@ pipeline
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/Ramya119/ABC-Technologies.git'
-                sh "mvn -Dmaven.test.failure.ignore=true clean compile"
+               build 'compile-job'
             }
         }
         stage('Test') {
             steps {
 
-                sh "mvn -Dmaven.test.failure.ignore=true test"
+               build 'test-job'
             }
         }
         stage('Package') {
             steps {
 
-                sh "mvn -Dmaven.test.failure.ignore=true package"
-                sh "docker build -t abc:latest ."
+                sh build 'package-job'
 
             }
-            post 
-                {
-                    success 
-                    {
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                        archiveArtifacts 'target/*.war'
-                    }
+          
             }
         }
         
