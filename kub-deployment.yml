@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: abctechnologiesapp
+  name: abctechapp
   labels:
-    app: abctechnologies
+    app: abctech
 spec:
   replicas: 10
   selector:
     matchLabels:
-      app: abctechnologies
+      app: abctech
   template:
     metadata:
       labels:
-        app: abctechnologies
+        app: abctech
     spec:
       containers:
-      - name: abctechnologies-cont
+      - name: abctech-cont
         image: ramyasree99/abc-technology:latest
         ports:
         - containerPort: 8080
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: abctechnologiesapp
+  name: abctechapp
 spec:
   type: NodePort
   selector:
-    app: abctechnologies
+    app: abctech
   ports:
    - protocol: TCP
      port: 8080
