@@ -1,44 +1,17 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
+LABEL maintainer=”ramyasreekanijam911@gmail.com”
 
-
-
-# Install prerequisites
-
-RUN apt-get -y update && apt-get -y upgrade
-
+RUN apt-get -y update 
 RUN apt-get -y install openjdk-8-jdk wget
+RUN apt-get install zip -y
 
-RUN apt-get -y install curl
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.55/bin/apache-tomcat-8.5.55.tar.gz -O /tmp/tomcat.tar.gz
+RUN cd /tmp && tar xvfz tomcat.tar.gz
+RUN mv /tmp/apache-tomcat-8.5.55 /opt/tomcat
 
-RUN mkdir /usr/local/tomcat
-
-RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz -O  /tmp/apache-tomcat-9.0.70.tar.gz
-RUN cd /tmp && tar xvfz apache-tomcat-9.0.70.tar.gz
-RUN cp -Rv /tmp/apache-tomcat-9.0.70/* /usr/local/tomcat/
-
+COPY target/ABCtechnologies-1.0.war /tmp/ABCtechnologies-1.0.war
+RUN unzip /tmp/ABCtechnologies-1.0.war -d /tmp/ABCtechnologies
+RUN mv /tmp/ABCtechnologies /opt/tomcat/webapps/
 
 EXPOSE 8080
-
-# java
-
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-
-
-
-# Define default command.
-
-CMD ["bash"]
-MAINTAINER ramyasreekanijam911@gmail.com
-
-
-
-
-WORKDIR /usr/local/tomcat/webapps
-
-RUN curl -O -L https://github.com/Ramya119/ABC-Technologies/blob/master/target/ABCtechnologies-1.0.war
-
-
-
-
-
-CMD ["https://net.cloudinfrastructureservices.co.uk/usr/local/tomcat/bin/catalina.sh", "run"]
+CMD /opt/tomcat/bin/catalina.sh run
