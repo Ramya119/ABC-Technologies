@@ -20,13 +20,11 @@ pipeline
         stage('Package') {
             steps {
 
-                sh build 'package-job'
-
+                build 'package-job'
             }
-          
-            }
-        }
+         }
+       
+    }
         
     }
     
-}
