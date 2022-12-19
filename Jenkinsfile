@@ -6,19 +6,19 @@ pipeline
     {
         stage('compile') {
             steps {
-               build 'compile-job'
+               build 'compile'
             }
         }
         stage('test') {
             steps {
 
-               build 'test-job'
+               build 'test'
             }
         }
         stage('package') {
             steps {
 
-                build 'package-job'
+                build 'package'
             }
          }
        
