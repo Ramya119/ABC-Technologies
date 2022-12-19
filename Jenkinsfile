@@ -6,8 +6,6 @@ pipeline
     {
         stage('Compile') {
             steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/Ramya119/ABC-Technologies.git'
                build 'compile-job'
             }
         }
