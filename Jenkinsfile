@@ -4,18 +4,18 @@ pipeline
     
     stages 
     {
-        stage('Compile') {
+        stage('compile') {
             steps {
                build 'compile-job'
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
 
                build 'test-job'
             }
         }
-        stage('Package') {
+        stage('package') {
             steps {
 
                 build 'package-job'
