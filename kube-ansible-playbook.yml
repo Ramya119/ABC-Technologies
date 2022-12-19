@@ -36,7 +36,7 @@
       docker_image:
        name: ramyasree99/abc-technology:latest
        source: pull
-        - name: initialize the cluster
+    - name: initialize the cluster
       shell: kubeadm init --pod-network-cidr=10.244.0.0/16 
 
     - name: create .kube directory
