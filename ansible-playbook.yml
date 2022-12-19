@@ -1,7 +1,7 @@
 ---
 - name: Build docker image & deploy on docker container
   gather_facts: true
-  hosts: all
+  hosts: localhost
   tasks:
     - name: Stop the container, if running
       ignore_errors: yes
